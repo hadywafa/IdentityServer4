@@ -1,4 +1,4 @@
-import { GlobalsService } from "../services/globals.service";
+import { GlobalService } from "../services/global.service";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { TokenService } from "../services/token.service";
@@ -7,7 +7,7 @@ import { TokenService } from "../services/token.service";
   providedIn: "root",
 })
 export class AutoLoginGuard {
-  constructor(private global: GlobalsService, private tokenService: TokenService) {}
+  constructor(private global: GlobalService, private tokenService: TokenService) {}
   canActivate(): Observable<boolean | string> {
     const accessToken = this.tokenService.getAccessToken();
     if (accessToken) {

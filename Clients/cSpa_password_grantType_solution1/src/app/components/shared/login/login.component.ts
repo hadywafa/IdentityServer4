@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       // Perform login action
-      console.log("Form submitted!", this.loginForm.value);
+      alert("Form submitted!");
+      console.log(this.loginForm.value);
+
     }
   }
 }
