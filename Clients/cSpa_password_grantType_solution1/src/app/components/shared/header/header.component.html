@@ -1,0 +1,41 @@
+<nav class="flex justify-between px-2 py-2 bg-white border-b-2">
+  <div class="flex items-center justify-between">
+    <a href="#" class="text-xl font-bold text-indigo-600">{{title}}</a>
+    <button
+      class="px-3 py-1 text-gray-600 border border-gray-600 border-solid rounded opacity-50 hover:opacity-75 md:hidden"
+      id="navbar-toggle"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  <div class="flex-col hidden mt-3 md:flex md:flex-row md:ml-auto md:mt-0">
+    <a href="#" class="p-2 text-white bg-indigo-600 rounded lg:px-4 md:mx-2">Home</a>
+    <a
+      [routerLink]="['/secure-page']"
+      class="p-2 text-gray-600 transition-colors duration-300 rounded lg:px-4 md:mx-2 hover:bg-gray-200 hover:text-gray-700"
+    >
+      Secure page
+    </a>
+    <a
+      [routerLink]="['/register']"
+      class="p-2 mt-1 text-center text-indigo-600 transition-colors duration-300 border border-indigo-600 border-solid rounded lg:px-4 md:mx-2 hover:bg-indigo-600 hover:text-white md:mt-0 md:ml-1"
+    >
+      Signup
+    </a>
+    <a
+      [routerLink]="['/login']"
+      class="p-2 text-center text-indigo-600 transition-colors duration-300 border border-transparent rounded lg:px-4 md:mx-2 hover:bg-indigo-100 hover:text-indigo-700"
+    >
+      Login
+    </a>
+    <a
+      (click)="logout()"
+      class="flex items-center justify-between p-2 text-center text-indigo-600 transition-colors duration-300 border border-transparent rounded lg:px-4 md:mx-2 hover:bg-indigo-100 hover:text-indigo-700"
+    >
+      <ng-icon name="matLogoutOutline"></ng-icon>
+      <span>
+        Logout
+      </span>
+    </a>
+  </div>
+</nav>
