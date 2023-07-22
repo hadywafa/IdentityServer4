@@ -267,7 +267,8 @@ FakesAssemblies/
 .ntvs_analysis.dat
 node_modules/
 dist/
-
+# angular 
+*.e2e
 # Visual Studio 6 build log
 *.plg
 
