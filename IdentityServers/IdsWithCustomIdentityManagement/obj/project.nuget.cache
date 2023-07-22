@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "99Xg723ImnrO3HCELVr3W8N2fXQotrJm1paxG4IBOw2H4RqlnlNfAa1v2L02RzgMY78Bwr/fY8xqe7h6uYn38A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HadyW\\source\\repos\\3-Learn New Tech Projects\\Backend\\Security\\All OAuth Cases\\With Ids\\Custom Identity Management\\IdentityServers\\IdsWithCustomIdentityManagement\\IdsWithCustomIdentityManagement.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HadyW\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
+    "C:\\Users\\HadyW\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\HadyW\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\HadyW\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\HadyW\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\HadyW\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\HadyW\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
