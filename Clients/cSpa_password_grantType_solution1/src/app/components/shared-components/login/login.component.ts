@@ -10,8 +10,7 @@ import { TokenService } from "src/app/services/token.service";
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private tokenService: TokenService) {}
-
+  constructor(private formBuilder: FormBuilder) {}
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ["", [Validators.required]],
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit {
       // Perform login action
       alert("Form submitted!");
       console.log(this.loginForm.value);
-
     }
   }
 }

@@ -34,4 +34,4 @@ import {
   declarations: [HeaderComponent, LoginComponent, RegisterComponent],
   exports: [HeaderComponent, LoginComponent, RegisterComponent],
 })
-export class SharedModule {}
+export class SharedComponentsModule {}

@@ -1,13 +1,31 @@
-import { LoginComponent } from "./components/shared/login/login.component";
-import { HomeComponent } from "./components/pages/home/home.component";
+import { AuthLayoutComponent } from "./layout/auth-layout/auth-layout.component";
+import { LoginComponent } from "./components/shared-components/login/login.component";
+import { HomeComponent } from "./components/app-components/home/home.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { RegisterComponent } from "./components/shared/register/register.component";
+import { CommercialLayoutComponent } from "./layout/commercial-layout/commercial-layout.component";
+import { AuthGuard } from "./guards/auth.guard";
+import { SecurePageComponent } from "./components/app-components/secure-page/secure-page.component";
+import { RegisterComponent } from "./components/shared-components/register/register.component";
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
+  {
+    path: "login",
+    component: AuthLayoutComponent,
+    children: [
+      { path: "", component: LoginComponent },
+      { path: "register", component: RegisterComponent },
+    ],
+  },
+  {
+    path: "",
+    component: CommercialLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: "", component: HomeComponent },
+      { path: "secure-page", component: SecurePageComponent },
+    ],
+  },
 ];
 
 @NgModule({
