@@ -7,13 +7,14 @@ import { CommercialLayoutComponent } from "./layout/commercial-layout/commercial
 import { AuthGuard } from "./guards/auth.guard";
 import { SecurePageComponent } from "./components/app-components/secure-page/secure-page.component";
 import { RegisterComponent } from "./components/shared-components/register/register.component";
+import { AutoLoginGuard } from "./guards/auto-login.guard";
 
 const routes: Routes = [
   {
     path: "login",
     component: AuthLayoutComponent,
     children: [
-      { path: "", component: LoginComponent },
+      { path: "", component: LoginComponent, canActivate: [AutoLoginGuard] },
       { path: "register", component: RegisterComponent },
     ],
   },
@@ -21,7 +22,8 @@ const routes: Routes = [
     path: "",
     component: CommercialLayoutComponent,
     children: [
-      { path: "", component: HomeComponent },
+      { path: "", redirectTo: "home", pathMatch: "full" },
+      { path: "home", component: HomeComponent },
       { path: "secure-page", component: SecurePageComponent, canActivate: [AuthGuard] },
     ],
   },

@@ -9,8 +9,10 @@ import { Component } from "@angular/core";
 })
 export class HeaderComponent {
   title: string;
+  isAuthenticated: boolean;
   constructor(private tokenService: TokenService, private global: GlobalService) {
     this.title = "dSpa_password_grantType_solution1";
+    this.isAuthenticated = !this.tokenService.isAccessTokenExpired();
   }
 
   logout() {
