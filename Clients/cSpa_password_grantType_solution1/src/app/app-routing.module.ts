@@ -20,10 +20,9 @@ const routes: Routes = [
   {
     path: "",
     component: CommercialLayoutComponent,
-    canActivate: [AuthGuard],
     children: [
       { path: "", component: HomeComponent },
-      { path: "secure-page", component: SecurePageComponent },
+      { path: "secure-page", component: SecurePageComponent, canActivate: [AuthGuard] },
     ],
   },
 ];

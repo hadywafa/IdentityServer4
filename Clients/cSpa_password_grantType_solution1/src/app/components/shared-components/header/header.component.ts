@@ -1,3 +1,5 @@
+import { GlobalService } from "./../../../services/global.service";
+import { TokenService } from "src/app/services/token.service";
 import { Component } from "@angular/core";
 
 @Component({
@@ -7,11 +9,12 @@ import { Component } from "@angular/core";
 })
 export class HeaderComponent {
   title: string;
-  constructor() {
+  constructor(private tokenService: TokenService, private global: GlobalService) {
     this.title = "dSpa_password_grantType_solution1";
   }
 
   logout() {
-    alert("logout");
+    this.tokenService.clearTokens();
+    this.global.redirectToLogin();
   }
 }

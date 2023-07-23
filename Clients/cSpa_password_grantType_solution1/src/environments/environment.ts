@@ -5,9 +5,11 @@
 export const environment = {
   production: false,
   //---------------------------------------- Identity server ----------------------------------
-  identityProvider: "https://localhost:7001",
-  clientId: "",
-  clientSecret: "",
+  identityServer: {
+    baseUrl: "https://localhost:7001",
+    clientId: "cSpa_password_grantType_solution1",
+    clientSecret: "very-strong-client-secret@1234",
+  },
 };
 
 /*

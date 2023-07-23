@@ -32,15 +32,15 @@ export class TokenService {
   requestAccessToken(username: string, password: string): Observable<any> {
     const params = new HttpParams()
       .set("grant_type", "password")
-      .set("client_id", environment.clientId)
-      .set("client_secret", environment.clientSecret)
+      .set("client_id", environment.identityServer.clientId)
+      .set("client_secret", environment.identityServer.clientSecret)
       .set("username", username)
       .set("password", password)
       .set("scope", "read openid offline_access");
 
     const headers = new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded");
     return this.http
-      .post<TokenResponse>(`${environment.identityProvider}/connect/token`, params.toString(), { headers })
+      .post<TokenResponse>(`${environment.identityServer.baseUrl}/connect/token`, params.toString(), { headers })
       .pipe(
         map((response) => {
           const tokenResponse = new TokenResponse(response);
@@ -64,13 +64,13 @@ export class TokenService {
     const params = new HttpParams()
       .set("grant_type", "refresh_token")
       .set("refresh_token", refreshToken)
-      .set("client_id", environment.clientId)
-      .set("client_secret", environment.clientSecret);
+      .set("client_id", environment.identityServer.clientId)
+      .set("client_secret", environment.identityServer.clientSecret);
 
     const headers = new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded");
 
     return this.http
-      .post<TokenResponse>(`${environment.identityProvider}/connect/token`, params.toString(), {
+      .post<TokenResponse>(`${environment.identityServer.baseUrl}/connect/token`, params.toString(), {
         headers,
       })
       .pipe(
