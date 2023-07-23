@@ -44,8 +44,8 @@ public class CustomResourceOwnerPasswordValidator : IResourceOwnerPasswordValida
 
         var userId = await appDbConnection.QueryFirstOrDefaultAsync<int>(
             @"SELECT 
-            u.Id AS CtPersonId,
-                FROM User u
+            u.Id AS Id
+                FROM [User] u
                 WHERE 
                     (u.Email = @username)
                     AND 

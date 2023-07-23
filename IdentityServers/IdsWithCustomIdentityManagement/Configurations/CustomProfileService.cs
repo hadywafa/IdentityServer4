@@ -40,11 +40,11 @@ public class CustomProfileService : IProfileService
         await using var appDbConnection = new SqlConnection(appConnectionStr);
         var contactInfo = await appDbConnection.QueryFirstOrDefaultAsync<ContactInfo>(
             @"SELECT 
-            Id AS CtPersonId,
+            Id AS Id,
             u.FirstName AS FirstName,
             u.LastName AS LastName,
-            u.Email AS Email,
-                FROM User u
+            u.Email AS Email
+                FROM [User] u
                 WHERE 
                      u.Id = @userId ",
             new { userId }
