@@ -20,12 +20,12 @@ export class AuthGuard {
             return of(true);
           }),
           catchError(() => {
-            this.global.redirectToLogin();
+            this.tokenService.requestAccessToken();
             return of(false); // Failed to refresh access token
           })
         );
       } else {
-        this.global.redirectToLogin();
+        this.tokenService.requestAccessToken();
         return of(false); // No refresh token available
       }
     }

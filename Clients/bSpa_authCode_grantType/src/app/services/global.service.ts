@@ -25,9 +25,6 @@ export class GlobalService {
     return url;
   }
 
-  redirectToLogin() {
-    this.router.navigate([`../login`]).catch((e) => console.log(e));
-  }
   redirectToHome() {
     this.router.navigate([`../`]).catch((e) => console.log(e));
   }

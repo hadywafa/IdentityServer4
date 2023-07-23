@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using Microsoft.Extensions.Options;
 using TeamIdentityProvider.Dto;
 
@@ -17,25 +18,38 @@ public class IdentityServerConfiguration : IIdentityServerConfiguration
 
     public IEnumerable<Client> GetClients()
     {
-        var clients = _identityProviderSettings.Clients.Select(
-            c =>
-                new Client
-                {
-                    ClientId = c.ClientId,
-                    ClientSecrets = { new Secret(c.ClientSecret.Sha256()) },
-                    AllowedScopes = c.AllowedScopes,
-                    AllowedGrantTypes = c.AllowedGrantTypes,
-                    //------------------------- Access Token Settings ------------------
-                    AccessTokenLifetime = c.AccessTokenLifetime,
-                    UpdateAccessTokenClaimsOnRefresh = true,
-                    //------------------------- Fresh  Token Settings ------------------
-                    AllowOfflineAccess = true,
-                    AbsoluteRefreshTokenLifetime = c.RefreshTokenLifetime,
-                    RefreshTokenExpiration = TokenExpiration.Absolute,
-                    RefreshTokenUsage = TokenUsage.OneTimeOnly, //why ?,
-                    AllowedCorsOrigins = c.AllowedCorsOrigins,
-                }
-        );
+        var clients = _identityProviderSettings.Clients.Select(c =>
+        {
+            var client = new Client
+            {
+                ClientName = "Angular-Client",
+                ClientId = c.ClientId,
+                ClientSecrets = { new Secret(c.ClientSecret.Sha256()) },
+                AllowedScopes = c.AllowedScopes,
+                AllowedGrantTypes = c.AllowedGrantTypes,
+                //------------------------- Access Token Settings ------------------
+                AccessTokenLifetime = c.AccessTokenLifetime,
+                UpdateAccessTokenClaimsOnRefresh = true,
+                AllowAccessTokensViaBrowser = true,
+                //------------------------- Refresh  Token Settings ------------------
+                AllowOfflineAccess = true,
+                AbsoluteRefreshTokenLifetime = c.RefreshTokenLifetime,
+                RefreshTokenExpiration = TokenExpiration.Absolute,
+                RefreshTokenUsage = TokenUsage.OneTimeOnly, //why ?,
+                AllowedCorsOrigins = c.AllowedCorsOrigins,
+            };
+
+            if (client.AllowedGrantTypes.Any(x => x == "authorization_code"))
+            {
+                client.RedirectUris = c.RedirectUris;
+                client.FrontChannelLogoutUri = c.FrontChannelLogoutUri;
+                client.PostLogoutRedirectUris = c.PostLogoutRedirectUris;
+                client.RequirePkce = true;
+                client.RequireClientSecret = false;
+                client.RequireConsent = false;
+            }
+            return client;
+        });
 
         return clients;
     }

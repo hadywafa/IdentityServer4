@@ -8,6 +8,7 @@ import { AuthGuard } from "./guards/auth.guard";
 import { SecurePageComponent } from "./components/app-components/secure-page/secure-page.component";
 import { RegisterComponent } from "./components/shared-components/register/register.component";
 import { AutoLoginGuard } from "./guards/auto-login.guard";
+import { AuthCallbackComponent } from "./components/shared-components/auth-callback/auth-callback.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     children: [
       { path: "", component: LoginComponent, canActivate: [AutoLoginGuard] },
       { path: "register", component: RegisterComponent },
+      { path: "auth-callback", component: AuthCallbackComponent },
     ],
   },
   {

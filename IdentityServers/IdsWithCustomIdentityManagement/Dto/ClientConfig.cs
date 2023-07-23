@@ -11,4 +11,9 @@ public class ClientConfig
 
     //------------------------------------------------------
     public List<string> AllowedCorsOrigins { get; set; }
+
+    //------------------------------------------------------
+    public List<string> RedirectUris { get; set; }
+    public string FrontChannelLogoutUri { get; set; }
+    public List<string> PostLogoutRedirectUris { get; set; }
 }

@@ -25,8 +25,7 @@
     </a>
     <a
       *ngIf="!isAuthenticated"
-      [routerLink]="['/login']"
-      routerLinkActive="active"
+      (click)="login()"
       class="p-2 text-gray-600 transition-colors duration-300 rounded lg:px-4 md:mx-2 hover:bg-gray-200 hover:text-gray-700"
     >
       Login

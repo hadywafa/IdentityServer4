@@ -8,7 +8,8 @@ export const environment = {
   identityServer: {
     baseUrl: "https://localhost:7001",
     clientId: "bSpa_authCode_grantType",
-    clientSecret: "very-strong-client-secret@1234",
+    redirect_uri: "http://localhost:4200/auth-callback", // The callback URL after successful authentication
+    scope: "openid profile email api", // The scopes you want to request
   },
 };
 

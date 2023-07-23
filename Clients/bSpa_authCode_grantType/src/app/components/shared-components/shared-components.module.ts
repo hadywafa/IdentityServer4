@@ -15,6 +15,7 @@ import {
   bootstrapMicrosoft,
   bootstrapTwitter,
 } from "@ng-icons/bootstrap-icons";
+import { AuthCallbackComponent } from "./auth-callback/auth-callback.component";
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import {
       bootstrapGoogle,
     }),
   ],
-  declarations: [HeaderComponent, LoginComponent, RegisterComponent],
+  declarations: [HeaderComponent, LoginComponent, AuthCallbackComponent, RegisterComponent],
   exports: [HeaderComponent, LoginComponent, RegisterComponent],
 })
 export class SharedComponentsModule {}
