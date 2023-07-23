@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'cSpa_authCode_grantType';
+  title = 'dSpa_password_grantType_solution1';
 }
