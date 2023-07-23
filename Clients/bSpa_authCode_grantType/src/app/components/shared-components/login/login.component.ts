@@ -28,21 +28,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
     if (this.loginForm.valid) {
       const email = this.loginForm.get("email")?.value;
       const password = this.loginForm.get("password")?.value;
-      this.tokenService
-        .requestAccessToken(email, password)
-        .pipe(takeUntil(this.destroyed$))
-        .subscribe({
-          next: () => {
-            const user = this.tokenService.getCurrentUser();
-            this.loading = false;
-            this.global.redirectToHome();
-          },
-          error: (error) => {
-            this.loading = false;
-            this.displayError(error).pipe(takeUntil(this.destroyed$)).subscribe();
-          },
-        });
     }
+    this.tokenService.requestAccessToken();
   }
 
   displayError(error: string): Observable<void> {

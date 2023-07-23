@@ -44,7 +44,7 @@ public class IdentityServerConfiguration : IIdentityServerConfiguration
                 client.RedirectUris = c.RedirectUris;
                 client.FrontChannelLogoutUri = c.FrontChannelLogoutUri;
                 client.PostLogoutRedirectUris = c.PostLogoutRedirectUris;
-                client.RequirePkce = true;
+                client.RequirePkce = false;
                 client.RequireClientSecret = false;
                 client.RequireConsent = false;
             }

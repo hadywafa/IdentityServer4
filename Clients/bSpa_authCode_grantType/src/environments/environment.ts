@@ -9,7 +9,7 @@ export const environment = {
     baseUrl: "https://localhost:7001",
     clientId: "bSpa_authCode_grantType",
     redirect_uri: "http://localhost:4200/auth-callback", // The callback URL after successful authentication
-    scope: "openid profile email api", // The scopes you want to request
+    scope: "read write openid ", // The scopes you want to request
   },
 };
 

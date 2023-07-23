@@ -13,7 +13,7 @@
       {
         "clientId": "bSpa_authCode_grantType",
         "clientSecret": "very-strong-client-secret@1234",
-        "allowedScopes": [ "read", "write", "openid" ],
+        "allowedScopes": [ "read", "write", "openid " ],
         "allowedGrantTypes": [ "authorization_code" ],
         "accessTokenLifetime": 3600, //one hour =>  60 x 60
         "refreshTokenLifetime": 86400, //one day => 24 x 60 x 60
