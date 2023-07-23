@@ -1,9 +1,11 @@
+import { GlobalService } from "./global.service";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map, throwError } from "rxjs";
 import jwtDecode from "jwt-decode";
 import { TokenResponse } from "../models/token-response";
 import { environment } from "src/environments/environment";
+import User from "../models/user";
 
 @Injectable({
   providedIn: "root",
@@ -12,8 +14,34 @@ export class TokenService {
   private readonly LOCAL_STORAGE_ACCESS_TOKEN = "access_token";
   private readonly LOCAL_STORAGE_REFRESH_TOKEN = "refresh_token";
   private accessTokenExp!: number;
-  constructor(private http: HttpClient) {}
+  currentUser: User | null;
+  constructor(private global: GlobalService, private http: HttpClient) {
+    this.currentUser = this.getCurrentUser();
+  }
+  getCurrentUser(): User | null {
+    const accessToken = this.getAccessToken();
 
+    if (accessToken && !this.isAccessTokenExpired() && this.currentUser) {
+      if (this.currentUser) return this.currentUser;
+      else {
+        try {
+          const tokenData: any = jwtDecode(accessToken);
+          const contactDataStr = tokenData.contact_data;
+          const userData = {
+            ...(contactDataStr ? JSON.parse(contactDataStr) : {}),
+          } as User;
+
+          return userData;
+        } catch (error) {
+          console.error("Error decoding token:", error);
+          return {} as User;
+        }
+      }
+    } else {
+      this.global.redirectToLogin();
+      return null;
+    }
+  }
   setTokens(accessToken: string, refreshToken: string): void {
     localStorage.setItem(this.LOCAL_STORAGE_ACCESS_TOKEN, accessToken);
     localStorage.setItem(this.LOCAL_STORAGE_REFRESH_TOKEN, refreshToken);
@@ -47,9 +75,9 @@ export class TokenService {
           this.setTokens(tokenResponse.access_token, tokenResponse.refresh_token);
         }),
         catchError((result) => {
-          // Handle the error and throw a new error to propagate it
-          console.error("An error occurred during login:", result.error);
-          return throwError(() => result.error.error_description);
+          const errorMessage = result?.error.error ?? result?.error ?? "";
+          console.error("An error occurred during login:", errorMessage);
+          return throwError(() => result.error?.error_description ?? errorMessage);
         })
       );
   }

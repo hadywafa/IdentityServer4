@@ -5,10 +5,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AppComponentsModule } from "./components/app-components/app-components.module";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { ToastrModule } from "ngx-toastr";
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, AppComponentsModule, ToastrModule.forRoot()],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, AppComponentsModule],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })

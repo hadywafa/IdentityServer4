@@ -7,7 +7,7 @@ export const environment = {
   //---------------------------------------- Identity server ----------------------------------
   identityServer: {
     baseUrl: "https://localhost:7001",
-    clientId: "cSpa_password_grantType_solution1",
+    clientId: "bSpa_authCode_grantType",
     clientSecret: "very-strong-client-secret@1234",
   },
 };

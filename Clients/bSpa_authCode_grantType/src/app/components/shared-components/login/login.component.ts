@@ -1,5 +1,4 @@
 import { GlobalService } from "./../../../services/global.service";
-import { AppLocalStorageService } from "./../../../services/app-local-storage.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Observable, defer, takeUntil } from "rxjs";
@@ -15,12 +14,7 @@ import Swal from "sweetalert2";
 export class LoginComponent extends BaseComponent implements OnInit {
   loginForm!: FormGroup;
   loading = false;
-  constructor(
-    private formBuilder: FormBuilder,
-    private tokenService: TokenService,
-    private appLocalStorage: AppLocalStorageService,
-    private global: GlobalService
-  ) {
+  constructor(private formBuilder: FormBuilder, private tokenService: TokenService, private global: GlobalService) {
     super();
   }
   ngOnInit() {
@@ -39,13 +33,12 @@ export class LoginComponent extends BaseComponent implements OnInit {
         .pipe(takeUntil(this.destroyed$))
         .subscribe({
           next: () => {
-            const user = this.appLocalStorage.getCurrentUser();
+            const user = this.tokenService.getCurrentUser();
             this.loading = false;
             this.global.redirectToHome();
           },
           error: (error) => {
             this.loading = false;
-
             this.displayError(error).pipe(takeUntil(this.destroyed$)).subscribe();
           },
         });
